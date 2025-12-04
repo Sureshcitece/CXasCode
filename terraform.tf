@@ -58,7 +58,7 @@ resource "genesyscloud_routing_queue" "Suresh_Example_Queue" {
   acw_wrapup_prompt        = "MANDATORY_TIMEOUT"
   acw_timeout_ms           = 300000
   skill_evaluation_method  = "BEST"
-  queue_flow_id            = "037f2416-0bfc-4172-afe1-18a8989cae7e"
+  queue_flow_id            = "31f91941-475c-4d32-8223-901ca38aa2cc"
   whisper_prompt_id        = "26ac8b8f-df81-4791-ad57-503ab25ea78d"
   auto_answer_only         = true
   enable_transcription     = true
