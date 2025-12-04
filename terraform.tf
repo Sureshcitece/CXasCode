@@ -17,73 +17,9 @@ data "genesyscloud_auth_division" "home" {
   name        = "Home"
 }
 
-/* resource "genesyscloud_routing_wrapupcode" "NewOrder" {
-  name        = "New Order"
-  description = "New Order test description"
-} */
-
-resource "random_uuid" "example_uuid" {}
-
-/* resource "genesyscloud_group" "TestGroup" {
-  name          = "Test Group"
-  description   = "Group for Testers"
-  type          = "official"
-  visibility    = "public"
-  rules_visible = true
-  addresses {
-    number = "+13174181234"
-    type   = "GROUPRING"
-  }
-  owner_ids      = ["4eff594a-b2f6-494e-804d-bb77780c53d6"]
-  member_ids     = ["4eff594a-b2f6-494e-804d-bb77780c53d6"]
-  roles_enabled  = true
-  calls_enabled  = false
-  include_owners = false
-} */
-
-resource "genesyscloud_script" "NewOrderScript" {
-  script_name       = "Example script name ${random_uuid.example_uuid.result}"
-  filepath          = "${var.working_dir.script}/MenuScript.script.json"
-  file_content_hash = filesha256("${var.working_dir.script}/MenuScript.script.json")
-  substitutions = {
-    /* Inside the script file, "{{foo}}" will be replaced with "bar" */
-    foo = "bar"
-  }
+module "flows" {
+  source = "./modules/flows"
+  # ... other arguments
 }
 
-resource "genesyscloud_routing_queue" "Suresh_Example_Queue" {
-  name                     = "Suresh Example Queue"
-  division_id              = data.genesyscloud_auth_division.home.id
-  description              = "This is an example description"
-  acw_wrapup_prompt        = "MANDATORY_TIMEOUT"
-  acw_timeout_ms           = 300000
-  skill_evaluation_method  = "BEST"
-  queue_flow_id            = "31f91941-475c-4d32-8223-901ca38aa2cc"
-  whisper_prompt_id        = "26ac8b8f-df81-4791-ad57-503ab25ea78d"
-  auto_answer_only         = true
-  enable_transcription     = true
-  enable_audio_monitoring  = true
-  enable_manual_assignment = true
-  calling_party_name       = "KFC"
-  groups                   = ["0d008fc9-14cf-4fc4-b926-e136e8d9a3b6"]
-
-  media_settings_call {
-    alerting_timeout_sec      = 30
-    service_level_percentage  = 0.7
-    service_level_duration_ms = 10000
-  }
-
-  routing_rules {
-    operator     = "MEETS_THRESHOLD"
-    threshold    = 9
-    wait_seconds = 300
-  }
-
-  default_script_ids = {
-    EMAIL = genesyscloud_script.NewOrderScript.id
-    # CHAT  = data.genesyscloud_script.chat.id
-  }
-
-  wrapup_codes = ["7d7e37e7-962c-4eae-a5ac-fed5955e4681"]
-}
 
