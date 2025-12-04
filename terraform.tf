@@ -17,14 +17,14 @@ data "genesyscloud_auth_division" "home" {
   name        = "Home"
 }
 
-resource "genesyscloud_routing_wrapupcode" "NewOrder" {
+/* resource "genesyscloud_routing_wrapupcode" "NewOrder" {
   name        = "New Order"
   description = "New Order test description"
-}
+} */
 
 resource "random_uuid" "example_uuid" {}
 
-resource "genesyscloud_group" "TestGroup" {
+/* resource "genesyscloud_group" "TestGroup" {
   name          = "Test Group"
   description   = "Group for Testers"
   type          = "official"
@@ -39,7 +39,7 @@ resource "genesyscloud_group" "TestGroup" {
   roles_enabled  = true
   calls_enabled  = false
   include_owners = false
-}
+} */
 
 resource "genesyscloud_script" "NewOrderScript" {
   script_name       = "Example script name ${random_uuid.example_uuid.result}"
