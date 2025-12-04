@@ -37,6 +37,12 @@ jobs:
           name: terraform-plan
           path: tfplan.binary
 
+      - name: Download Terraform Plan Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan
+          path: .
+
       - name: Terraform Apply
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: terraform apply -auto-approve tfplan.binary # Or use an interactive apply for manual approval
