@@ -19,7 +19,10 @@ data "genesyscloud_auth_division" "home" {
 
 module "flows" {
   source = "./modules/flows"
-  # ... other arguments
+  
+  oauth_client = var.oauth_client
+  oauth_secret = var.oauth_secret
+  aws_region   = var.aws_region
 }
 
 

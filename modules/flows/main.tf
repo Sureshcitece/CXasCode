@@ -1,3 +1,9 @@
+provider "genesyscloud" {
+  oauthclient_id = "${var.oauth_client}"
+  oauthclient_secret = "${var.oauth_secret}"
+  aws_region = "${var.aws_region}"
+}
+
 resource "genesyscloud_flow" "inbound_call_flow" {
   filepath = "${var.working_dir.script}/inboundcall_flow_example_substitutions.yaml"
   // Example flow configuration using substitutions:
