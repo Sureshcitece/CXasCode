@@ -65,7 +65,7 @@ resource "genesyscloud_routing_queue" "Suresh_Example_Queue" {
   enable_audio_monitoring  = true
   enable_manual_assignment = true
   calling_party_name       = "KFC"
-  groups                   = [genesyscloud_group.TestGroup.id]
+  groups                   = ["0d008fc9-14cf-4fc4-b926-e136e8d9a3b6"]
 
   media_settings_call {
     alerting_timeout_sec      = 30
@@ -84,6 +84,6 @@ resource "genesyscloud_routing_queue" "Suresh_Example_Queue" {
     # CHAT  = data.genesyscloud_script.chat.id
   }
 
-  wrapup_codes = [genesyscloud_routing_wrapupcode.NewOrder.id]
+  wrapup_codes = ["7d7e37e7-962c-4eae-a5ac-fed5955e4681"]
 }
 
