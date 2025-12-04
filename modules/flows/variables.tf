@@ -15,3 +15,13 @@ variable "oauth_client" {
     type        = string
     default     = "60172323-250b-44df-bc6f-f8f27b5129fe"
 }
+
+variable "working_dir" {
+  description = "The path to the working directory."
+  type        = object({
+    script    = string
+  })
+    default = {
+    script    = "./scripts"
+  }
+}

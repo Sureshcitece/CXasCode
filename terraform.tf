@@ -23,6 +23,7 @@ module "flows" {
   oauth_client = var.oauth_client
   oauth_secret = var.oauth_secret
   aws_region   = var.aws_region
+  working_dir = var.working_dir
 }
 
 
